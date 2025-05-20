@@ -17,7 +17,6 @@ type Config struct {
 	TestUsers    []string
 }
 
-// Load lê o .env e carrega todas as configs
 func Load() (*Config, error) {
 	_ = godotenv.Load()
 
