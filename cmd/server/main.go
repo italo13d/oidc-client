@@ -10,22 +10,18 @@ import (
 )
 
 func main() {
-	// Carrega variáveis (& .env)
 	cfg, err := config.Load()
 	if err != nil {
 		log.Fatalf("config error: %v", err)
 	}
 
-	// Cria cliente OIDC com regras de autorização
 	oidcClient, err := oidc.New(cfg)
 	if err != nil {
 		log.Fatalf("oidc error: %v", err)
 	}
 
-	// Constrói handlers HTTP
 	h := handlers.New(oidcClient)
 
-	// Rotas
 	http.HandleFunc("/login", h.Login)
 	http.HandleFunc("/callback", h.Callback)
 
